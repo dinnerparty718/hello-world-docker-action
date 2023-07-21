@@ -9,11 +9,17 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
-        id: hello
-        uses: ./.github/actions/build-docker-images
+      # - name: Hello world action step
+      #   id: hello
+      #   uses: ./.github/actions/build-docker-images
+      #   with:
+      #     who-to-greet: 'dinner inside action'
+      # # Use the output from the `hello` step
+      # - name: Get the output time
+      #   run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+      - name: build base images and upload to local registry
+        id: build-base-image
+        uses: ./.github/actions/build-base-images
         with:
           who-to-greet: 'dinner inside action'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
